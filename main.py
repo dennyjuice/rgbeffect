@@ -1,6 +1,7 @@
 from PIL import Image
 
 def stylize(offset, image):
+    image_name = image
     image = Image.open(image)
 
     if image.mode != "RGB":
@@ -12,7 +13,7 @@ def stylize(offset, image):
     green = green.crop((offset / 2, 0, green.width - offset / 2, green.height))
 
     stylize_image = Image.merge("RGB", (red, green, blue))
-    stylize_image.save("new_avatar.jpg")
+    stylize_image.save("{}_avatar.jpg".format(image_name.split('.')[0]))
 
 if __name__ == "__main__":
     stylize(50, 'monro.jpg')
